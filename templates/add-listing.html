@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html lang="en">
+<div class="navbar">
+    <a href="/contents">Return</a>
+</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Listing</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    form {
+        max-width: 600px;
+        margin: auto;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"], input[type="number"], input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 10px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<!-- This is the form to add a new car listing -->
+<h1>Add Car Listing</h1>
+<form method="POST" action="/add-listing" enctype="multipart/form-data">
+    <label for="manufacturer">Manufacturer Name:</label>
+    <input type="text" id="manufacturer" name="manufacturer" required>
+
+    <label for="bodystyle">Body Style Name:</label>
+    <input type="text" id="bodystyle" name="bodystyle" min="1" max="20" required>
+
+    <label for="car_name">Car Name:</label>
+    <input type="text" id="car_name" name="car_name" min="1" max="20" required>
+
+    <label for="horsepower">Horsepower:</label>
+    <input type="number" id="horsepower" name="horsepower" min="1" max="2000" required >
+
+    <label for="torque">Torque:</label>
+    <input type="number" id="torque" name="torque" min="1" max="2000" required>
+
+    <label for="eco_rating">Eco Rating:</label>
+    <input type="number" id="eco_rating" name="eco_rating" min="0" max="5" required>
+
+    <label for="safety_rating">Safety Rating:</label>
+    <input type="number" id="safety_rating" name="safety_rating" min="0" max="5" required>
+
+    <label for="seats">Seats:</label>
+    <input type="number" id="seats" name="seats" min="1" max="20" required>
+
+    <label for="year">Year:</label>
+    <input type="text" id="year" name="year" min="1900" max="3000" required>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" min="1" max="1000000" required>
+
+    <label for="distance">Distance:</label>
+    <input type="number" id="distance" name="distance" min="1" max="2000000" required>
+
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image" min="1" max="20" required>
+
+    <button type="submit">Add Listing</button>
+</form>
+
+
+    <img src="https://southey.co.nz/images/yardfade.png" alt="Yardfade" class="center">
+    Southey's Auto World Ltd/Southey Honda & Nissan. - Cnr Park and Dixon Street, Masterton, New Zealand. Phone: (06) 378 2543 or Email DSdirect@southey.co.nz
+    <h2>Southey's Auto World Ltd/southey Honda & Nissan.</h2>
+
+</html>

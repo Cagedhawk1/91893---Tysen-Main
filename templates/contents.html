@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Inventory</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #eded;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 58%;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 60px;
+        }
+    </style>
+    <img src="https://southey.co.nz/images/web_header.png" alt="top pic">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/add-listing">Add Listing</a>
+    </div>
+
+    <form method="GET" action="/contents">
+        <input type="text" name="query">
+        <button type="submit">Search</button>
+    </form>
+
+    <form method="GET" action="/contents">
+        <button type="submit">Back</button>
+    </form>
+
+    
+    <!-- Table to display the car inventory -->
+    <h1>Car Inventory</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Images</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Distance</th>
+            </tr>
+        </thead>
+        <!-- Python imbeded into HTML to querry the database -->
+        <tbody>
+            {% if cars|length == 0 %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No cars found</td>
+                </tr>
+            {% else %}
+                {% for car in cars %}
+                    <tr>
+                        <td>
+                            {% if car.image %}
+                                <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" width="570">
+                            {% else %}
+                                No image
+                            {% endif %}
+                        </td>
+                        <td>{{ car.manufacturer.manufacturer_name }}</td>
+                        <td>{{ car.model.model_name }}</td>
+                        <td>{{ car.year }}</td>
+                        <td>{{ car.car_price }}</td>
+                        <td>{{ car.distance }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    <img src="https://southey.co.nz/images/yardfade.png" alt="Yardfade" class="center"> 
+    <h2>Southey's Auto World Ltd/southey Honda & Nissan.</h2>
+</body>
+</html>
