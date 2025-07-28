@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %} 
+
+[% block title %}Southey Honda & Nissan{% endblock %}
+
+[% block styles %]
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+<style>
+    .navbar-brand img { height: 30px; }
+    .carousel-caption { background-color: rgba(0, 0, 0, 0.5); }
+</style>
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='nissan-logo.png') }}" alt="Nissan">
+            <img src="{{ url_for('static', filename='southey-logo.png') }}" alt="Southey">
+            <img src="{{ url_for('static', filename='honda-logo.png') }}" alt="Honda">
+        </a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{{ url_for('index') }}">Home</a>
+            <a class="nav-item nav-link" href="{{ url_for('our_stock') }}">Our Stock</a>
+            <a class="nav-item nav-link" href="{{ url_for('new_nissan') }}">New Nissan</a>
+            <a class="nav-item nav-link" href="{{ url_for('new_honda') }}">New Honda</a>
+            <a class="nav-item nav-link" href="{{ url_for('dev_home') }}">DevHome</a>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
