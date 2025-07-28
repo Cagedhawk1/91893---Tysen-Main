@@ -46,6 +46,11 @@ def register_routes(app, db):
     def home():
         return render_template('home.html')
 
+    # Creates dev home page
+    @app.route('/DevHome')
+    def DevHome():
+        return render_template('DevHome.html')
+
     # OLD DEV FUNCTION
     
     #@app.route('/cars')

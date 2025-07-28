@@ -21,7 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize plugins
 db.init_app(app)
 
-# CREATE DB ONLY IF IT DOESN'T EXIST
+# CREATE DB ONLY IF IT DOES 
 with app.app_context():
     if not os.path.exists(DB_PATH):
         db.create_all()
@@ -48,4 +48,4 @@ def create_app():
 if __name__ == "__main__":
     # create the app again?
     app = create_app()
-    app.run()
+    app.run(debug = True)
