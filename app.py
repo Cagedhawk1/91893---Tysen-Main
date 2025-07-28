@@ -2,9 +2,12 @@ import os
 from flask import Flask
 from models import db  # import db, SQLAlchemy, and models
 from routes import register_routes  # function that registers Flask routes
+from flask_bootstrap import Bootstrap
+
 
 # Create the app at module level
 app = Flask(__name__, instance_relative_config=True)
+Bootstrap(app)
 
 # check if instance folder exists
 try:
@@ -48,4 +51,4 @@ def create_app():
 if __name__ == "__main__":
     # create the app again?
     app = create_app()
-    app.run()
+    app.run(debug=True)
