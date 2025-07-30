@@ -4,7 +4,7 @@
 
 {% block styles %}
     {{ super() }}
-    {{ url_for('static', filename='custom.css') | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         .carousel-caption { background-color: rgba(0, 0, 0, 0.5); }
     </style>
