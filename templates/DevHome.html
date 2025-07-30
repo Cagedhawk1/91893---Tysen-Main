@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <img src="https://southey.co.nz/images/web_header.png" alt="bottom pic">
-</head>
-<!-- Slideshow from W3 Schools -->
-<body>
-    <!-- Elfsight AI Chatbot | AI Chatbot -->
-  <script src="https://static.elfsight.com/platform/platform.js" async></script>
-  <div class="elfsight-app-3770632d-71c5-4c1d-a707-461239b9ac09" data-elfsight-app-lazy></div>
-  
-  {% block navbar %}
-  {% endblock %}
-  
-    <h1>Welcome to Southey Honda & Nissan</h1>
-    <h2> WE SELL
-        New Honda
-        New Nissan
-        Quality Used Vehicles of various makes and models
-        Vehicle Finance and Insurance
-        Used Vehicle Mechanical Warranties
-        WE ALSO HAVE
-        Full workshop facilities for servicing, repairs and warrant of fitness
-        Comprehensive Parts Dept
-        NZTA Services - Vehicle Registration, Road User Charges etc.</h2>
-</body>
+{% extend "base.html" %}
+{% block title %}DevHome{% endblock %}
 
-<footer>
-  <img src="https://southey.co.nz/images/yardfade.png" alt="bottom pic" class="center">
-  Southey's Auto World Ltd/Southey Honda & Nissan. - Cnr Park and Dixon Street, Masterton, New Zealand.
-  Phone: (06) 378 2543 or Email Direct
-  <h2>© Southey's Auto World Ltd/Southey Honda & Nissan.</h2>
-</footer>
-</html>
+{% block content %}
+
+{% block styles %}
+    {{ super() }}
+    <style>
+        /* Add custom styles here if needed */
+    </style>
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to Dev Home</h1>
+        <p>This is the developer homepage content.</p>
+    </div>
+{% endblock %}  
+
