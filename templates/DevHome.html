@@ -9,18 +9,14 @@
     </style>
 {% endblock %}
 
-{% block navbar %}
-    {% include "navbar.html" %}
-{% endblock %}
-
-{% block content %}
+{% block page_content %}
     <div class="container">
         <h1>Welcome to Dev Home</h1>
         <p>This is the developer homepage content.</p>
     </div>
 {% endblock %}
 
-{% block scripts %}
+{% block scripts }
     {{ super() }}
     <script>
         // Add custom scripts here if needed
