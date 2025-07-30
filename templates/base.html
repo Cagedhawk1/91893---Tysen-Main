@@ -1,14 +1,6 @@
-{% extends "base.html" %}
+{% base.html" %}
 
 {% block title %}Southey Honda & Nissan{% endblock %}
-
-{% block styles %}
-    {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
-        .carousel-caption { background-color: rgba(0, 0, 0, 0.5); }
-    </style>
-{% endblock %}
 
 {% block navbar %}
     {% include "navbar.html" %}
@@ -25,8 +17,4 @@
         Phone: (06) 378 2543 or Email Direct
         <h3> Southey's Auto World Ltd/Southey Honda & Nissan </h3>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    {{ super() }}
 {% endblock %}
