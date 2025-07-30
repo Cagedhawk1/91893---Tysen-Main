@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block title %}DevHome{% endblock %}
 
 {% block styles %}
@@ -9,7 +10,7 @@
 {% endblock %}
 
 {% block navbar %}
-    {% include 'navbar.html' %}
+    {% include "navbar.html" %}
 {% endblock %}
 
 {% block content %}
@@ -17,5 +18,11 @@
         <h1>Welcome to Dev Home</h1>
         <p>This is the developer homepage content.</p>
     </div>
-{% endblock %}  
+{% endblock %}
 
+{% block scripts %}
+    {{ super() }}
+    <script>
+        // Add custom scripts here if needed
+    </script>
+{% endblock %}
