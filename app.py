@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 
 # Create the app at module level
 app = Flask(__name__, instance_relative_config=True)
-Bootstrap(app)
+bootstrap = Bootstrap(app)
 
 # check if instance folder exists
 try:
