@@ -1,5 +1,7 @@
 import os
 from flask import Flask
+from models import db
+from routes import register_routes
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
