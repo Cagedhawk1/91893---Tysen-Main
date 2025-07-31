@@ -1,21 +1,8 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}DevHome{% endblock %}
+{% block title %}Home{% endblock %}
 
-{% block styles %}
-    {{ super() }}
-    <style>
-        /* Add custom styles here if needed */
-    </style>
+{% block content %}
+<h1>Welcome to My Flask App</h1>
+<p>This is the home page content.</p>
 {% endblock %}
-
-{% block page_content %}
-    <div class="container">
-        <h1>Welcome to Dev Home</h1>
-        <p>This is the developer homepage content.</p>
-    </div>
-{% endblock %}
-
-{% block footer %}
-{% endblock %}
-
