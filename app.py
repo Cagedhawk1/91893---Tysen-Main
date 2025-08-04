@@ -7,10 +7,10 @@ from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
-
 def create_app():
     # Create the app at module level
     app = Flask(__name__, instance_relative_config=True)
+    Bootstrap(app)
     bootstrap.init_app(app)
 
     # Check if instance folder exists
