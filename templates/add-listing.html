@@ -1,44 +1,9 @@
-<!DOCTYPE html> 
-<html lang="en">
-<div class="navbar">
-    <a href="/contents">Return</a>
-</div>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Listing</title>
+{% extends "base.html" %}
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-    }
-    form {
-        max-width: 600px;
-        margin: auto;
-    }
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    input[type="text"], input[type="number"], input[type="file"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-    }
-    button {
-        padding: 10px 15px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-</style>
+{% block title %}Home{% endblock %}
 
-<!-- This is the form to add a new car listing -->
-<h1>Add Car Listing</h1>
+{% block page_content %}
+    <h1>Add Car Listing</h1>
 <form method="POST" action="/add-listing" enctype="multipart/form-data">
     <label for="manufacturer">Manufacturer Name:</label>
     <input type="text" id="manufacturer" name="manufacturer" required>
@@ -77,11 +42,39 @@
     <input type="file" id="image" name="image" min="1" max="20" required>
 
     <button type="submit">Add Listing</button>
-</form>
 
+{% endblock %}
 
-    <img src="https://southey.co.nz/images/yardfade.png" alt="Yardfade" class="center">
-    Southey's Auto World Ltd/Southey Honda & Nissan. - Cnr Park and Dixon Street, Masterton, New Zealand. Phone: (06) 378 2543 or Email DSdirect@southey.co.nz
-    <h2>Southey's Auto World Ltd/southey Honda & Nissan.</h2>
+{% block styles %}
 
-</html>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"], input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+{% endblock %}
