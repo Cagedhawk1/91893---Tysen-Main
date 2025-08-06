@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 def create_app():
     # Create the app at module level
     app = Flask(__name__, instance_relative_config=True)
