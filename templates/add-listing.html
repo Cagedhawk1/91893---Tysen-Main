@@ -41,7 +41,8 @@
     <label for="image">Image:</label>
     <input type="file" id="image" name="image" min="1" max="20" required>
 
-    <button type="submit">Add Listing</button a>
+    <button type="submit" class="secondary-btn">All listing</button>
+</form>
 
 {% endblock %}
 
@@ -65,15 +66,16 @@
             padding: 8px;
             margin-bottom: 10px;
         }
-        button a {
+        .secondary-btn {
             padding: 10px 15px;
-            background-color: #4CAF50;
+            background-color: #23da35;
             color: white;
             border: none;
             cursor: pointer;
         }
-        button a:hover {
-            background-color: #45a049;
+
+        .secondary-btn:hover {
+            background-color: #1b9d28;
         }
     </style>
 
