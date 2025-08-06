@@ -81,7 +81,52 @@
             font-size: 1.1em;
             line-height: 1.5;
         }
-    
+        
+                .carousel {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-inner {
+            border-radius: 10px; /* Rounded corners */
+            overflow: hidden; /* Ensure images respect border radius */
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            object-fit: cover; /* Ensure images cover the area without distortion */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
+        }
+
+        .carousel-item {
+            position: relative;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            border-radius: 5px;
+            padding: 15px;
+            bottom: 20%; /* Position captions higher */
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle text shadow for readability */
+        }
+
+        .carousel-caption h5 {
+            font-size: 2rem; /* Larger caption title */
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-caption {
+                bottom: 10%; /* Adjust caption position for smaller screens */
+                padding: 10px;
+            }
+            .carousel-caption h5 {
+                font-size: 1.5rem; /* Smaller title on mobile */
+            }
+        }
     </style>
 {% endblock %}
 
