@@ -2,6 +2,10 @@
 
 {% block title %}Home{% endblock %}
 
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
 {% block page_content %}
     <h1>Add Car Listing</h1>
 <form method="POST" action="/add-listing" enctype="multipart/form-data">

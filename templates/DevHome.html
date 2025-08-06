@@ -2,6 +2,10 @@
 
 {% block title %}Home{% endblock %}
 
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
 {% block page_content %}
   <h1>Welcome to My App</h1>
   <p>This is the home page content.</p>
