@@ -8,13 +8,34 @@
 {% endblock %}
 
 {% block navbar %}
-  <div class="navbar">
-    <a href="/">Home</a>
-    <a href="/contents">Our Stock</a>
-    <a href="https://www.nissan.co.nz/">New Nissan</a>
-    <a href="https://www.honda.co.nz/new-cars/">New Honda</a>
-    <a href="/DevHome">DevHome</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="mainNav">
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Our Stock</a>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="newCars" role="button" data-bs-toggle="dropdown"
+         aria-expanded="false">New</a>
+      <ul class="dropdown-menu" aria-labelledby="newCars">
+        <li><a class="dropdown-item" href="#">Nissan</a></li>
+        <li><a class="dropdown-item" href="#">Honda</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="d-flex">
+    <a class="btn btn-outline-light btn-sm" href="#">DevHome</a>
   </div>
+</div>
 {% endblock %}
 
 {% block content %}

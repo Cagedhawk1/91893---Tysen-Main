@@ -5,50 +5,87 @@ body {
     background-color: #f5f5f5;
 }
 
-.navbar {
-    padding: 15px 0;
-    background-color: #343a40;
+nav.navbar {
+background-color: #212529;    
+box-shadow: 0 2px 10px rgba(0,0,0,.25);
 }
 
-.navbar .container {
-    padding: 0 15px;
+/* Brand */
+nav.navbar .navbar-brand {
+color: #fff;
+font-weight: 600;
+letter-spacing: .2px;
+text-decoration: none;
+}
+nav.navbar .navbar-brand:hover { color: #f8f9fa; }
+
+/* Links */
+nav.navbar .nav-link {
+color: rgba(255,255,255,.8);
+font-weight: 500;
+padding: .5rem 1rem;
+text-decoration: none;
+position: relative;               
+}
+nav.navbar .nav-link:hover,
+nav.navbar .nav-link:focus {
+color: #fff;
 }
 
-.navbar-toggler {
-    border: none;
-    padding: 10px;
-    background-color: #495057;
+
+nav.navbar .nav-link:hover::after,
+nav.navbar .nav-link.active::after,
+nav.navbar .show > .nav-link::after {
+content: "";
+position: absolute;
+left: .75rem;
+right: .75rem;
+bottom: .25rem;
+height: 2px;
+background: #0d6efd;                 
+border-radius: 2px;
 }
 
-.navbar-toggler-icon {
-    background-image: url("");
+/* Space items a bit on large screens */
+@media (min-width: 992px) {
+nav.navbar .navbar-nav { gap: .25rem; }
 }
 
-.navbar-nav {
-    margin: 0;
+/* Toggler */
+nav.navbar .navbar-toggler {
+border: none;
+}
+nav.navbar .navbar-toggler:focus {
+box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
 }
 
-.nav-item {
-    margin-right: 15px;
+/* Dropdown */
+nav.navbar .dropdown-menu {
+background: #2a2f34;
+border: 1px solid rgba(255,255,255,.1);
+box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+nav.navbar .dropdown-item {
+color: #e9ecef;
+}
+nav.navbar .dropdown-item:hover,
+nav.navbar .dropdown-item:focus {
+color: #fff;
+background: #0d6efd;
 }
 
-.nav-link {
-    color: #ffffff !important;
-    font-size: 16px;
-    padding: 10px 15px;
-    transition: color 0.3s ease;
+/* DevHome button on the right */
+nav.navbar .btn-outline-light.btn-sm {
+border-color: rgba(255,255,255,.6);
+}
+nav.navbar .btn-outline-light.btn-sm:hover {
+color: #212529;
+background: #fff;
+border-color: #fff;
 }
 
-.nav-link:hover {
-    color: #adb5bd !important;
-    text-decoration: none;
-}
-
-.nav-link.active {
-    color: #ffffff !important;
-    background-color: #495057;
-    border-radius: 5px;
-}
+/* d body padding */
+body.with-fixed-top { padding-top: 4rem; }
 
 .container {
     max-width: 800px;

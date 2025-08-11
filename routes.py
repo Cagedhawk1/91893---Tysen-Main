@@ -52,7 +52,7 @@ def register_routes(app, db):
         carousel_items = [
             {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/AU/Images/homepage/redesign/compressed/award-NIS4334_Qashqai_2022_homepage_d-with-GDA-2-2000x821.jpg.ximg.full.hero.jpg', 'caption': 'Book a test drive', 'E Power': 'Runnout Sale.'},
             {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/AU/Images/homepage/new-navara-pro-4x-homepage-banner-3840x1574.jpg.ximg.full.hero.jpg', 'caption': 'Book a teat drive', 'Unbeatable Ute': 'Unstoppable Deal.'},
-            {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/new-zealand/images/homepage/NIS5140-13_Nissan-X-TRAIL-Production_Digital_HeroDesktop_1620x1152-v.jpg.ximg.full.hero.jpg', 'caption': 'Book a teat drive', 'Offers on now': 'Factory Bonus Offers.'},
+            {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/new-zealand/images/homepage/NIS5140-13_Nissan-X-TRAIL-Production_Digital_HeroDesktop_1620x1152-v.jpg.ximg.full.hero.jpg', 'caption': 'Book a test drive', 'Offers on now': 'Factory Bonus Offers.'},
         ]
         return render_template('DevHome.html', carousel_items=carousel_items)   
 
