@@ -6,6 +6,7 @@
     {{ super() }}
 {% endblock %}
 
+
 {% block page_content %}
     <h1>Add Car Listing</h1>
 <form method="POST" action="/add-listing" enctype="multipart/form-data">
@@ -55,7 +56,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/008/423/535/non_2x/3d-black-geometric-abstract-background-overlap-layer-on-dark-space-with-line-motion-style-effect-graphic-design-element-carbon-fiber-texture-concept-for-banner-flyer-card-brochure-cover-etc-vector.jpg');
         }
         form {
             max-width: 600px;
@@ -81,7 +84,7 @@
         .secondary-btn:hover {
             background-color: #1b9d28;
         }
-        
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -90,48 +93,53 @@
         }
 
         .navbar {
-            padding: 15px 0;
-            background-color: #343a40;
+            /* makes it span edge-to-edge even inside a centered container */
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+
+            background: #2b3035;
+            color: #e9ecef;
+            padding: 16px 26px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+
+            position: sticky;  /* change to fixed for always-on-top */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
         }
 
-        .navbar .container {
-            padding: 0 15px;
-        }
-
-        .navbar-toggler {
-            border: none;
-            padding: 10px;
-            background-color: #495057;
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("");
-        }
-
-        .navbar-nav {
-            margin: 0;
-        }
-
-        .nav-item {
-            margin-right: 15px;
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-size: 16px;
-            padding: 10px 15px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #adb5bd !important;
+        .navbar a {
+            color: #e9ecef;
             text-decoration: none;
+            padding: 10px 110px; 
+            border-radius: 4px; 
+            line-height: 1;
+            transition: background-color .15s ease, color .15s ease;
+            font-size: 0.9em; /* Smaller font size */
         }
 
-        .nav-link.active {
-            color: #ffffff !important;
-            background-color: #495057;
-            border-radius: 5px;
+        .navbar a:hover,
+        .navbar a:focus {
+            background: #C3002F;
+            color: #fff;
+            outline: none;
+        }
+
+        .navbar a.active {
+            background: rgba(255,255,255,.1);
+        }
+
+        @media (max-width: 560px) {
+            .navbar a {
+                flex: 1 1 auto;
+                text-align: center;
+                font-size: 0.8em; /* Even smaller on mobile */
+            }
         }
 
         .container {

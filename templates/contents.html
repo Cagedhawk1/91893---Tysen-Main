@@ -1,21 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Inventory</title>
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block styles %}
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/008/423/535/non_2x/3d-black-geometric-abstract-background-overlap-layer-on-dark-space-with-line-motion-style-effect-graphic-design-element-carbon-fiber-texture-concept-for-banner-flyer-card-brochure-cover-etc-vector.jpg');
+        }
+
+        .navbar {
+            /* makes it span edge-to-edge even inside a centered container */
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+
+            background: #2b3035;
+            color: #e9ecef;
+            padding: 16px 26px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+
+            position: sticky;  /* change to fixed for always-on-top */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+
+        .navbar a {
+            color: #e9ecef;
+            text-decoration: none;
+            padding: 10px 110px; 
+            border-radius: 4px; 
+            line-height: 1;
+            transition: background-color .15s ease, color .15s ease;
+            font-size: 0.9em; /* Smaller font size */
+        }
+
+        .navbar a:hover,
+        .navbar a:focus {
+            background: #313131;
+            color: #fff;
+            outline: none;
+        }
+
+        .navbar a.active {
+            background: rgba(255,255,255,.1);
+        }
+
+        @media (max-width: 560px) {
+            .navbar a {
+                flex: 1 1 auto;
+                text-align: center;
+                font-size: 0.8em; /* Even smaller on mobile */
+            }
+        }
         table {
+            align-content: center;
+            margin: auto;
             width: 60%;
             border-collapse: collapse;
         }
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #3d3d3d;
             text-align: left;
             padding: 8px;
         }
         th {
-            background-color: #eded;
+            background-color: rgba(200, 200, 200, 0.867);
         }
         .center {
             display: block;
@@ -29,66 +92,78 @@
             padding: 0;
             width: 60px;
         }
+        .container {
+            max-width: 85%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
-    <img src="https://southey.co.nz/images/web_header.png" alt="top pic">
-</head>
-<body>
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/add-listing">Add Listing</a>
-    </div>
+{% endblock %}
 
-    <form method="GET" action="/contents">
-        <input type="text" name="query">
-        <button type="submit">Search</button>
-    </form>
 
-    <form method="GET" action="/contents">
-        <button type="submit">Back</button>
-    </form>
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our Inventory</title>
+    </head>
 
-    
-    <!-- Table to display the car inventory -->
-    <h1>Car Inventory</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Images</th>
-                <th>Manufacturer</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Price</th>
-                <th>Distance</th>
-            </tr>
-        </thead>
-        <!-- Python imbeded into HTML to querry the database -->
-        <tbody>
-            {% if cars|length == 0 %}
-                <tr>
-                    <td colspan="6" style="text-align: center;">No cars found</td>
-                </tr>
-            {% else %}
-                {% for car in cars %}
-                    <tr>
-                        <td>
-                            {% if car.image %}
-                                <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" width="570">
-                            {% else %}
-                                No image
-                            {% endif %}
-                        </td>
-                        <td>{{ car.manufacturer.manufacturer_name }}</td>
-                        <td>{{ car.model.model_name }}</td>
-                        <td>{{ car.year }}</td>
-                        <td>{{ car.car_price }}</td>
-                        <td>{{ car.distance }}</td>
-                    </tr>
-                {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
+    <body>
+        <div>
+            <div class="container mt-5">
+                <form method="GET" action="/contents">
+                    <input type="text" name="query">
+                    <button type="submit">Search</button>
+                </form>
 
-    <img src="https://southey.co.nz/images/yardfade.png" alt="Yardfade" class="center"> 
-    <h2>Southey's Auto World Ltd/southey Honda & Nissan.</h2>
-</body>
-</html>
+                <form method="GET" action="/contents">
+                    <button type="submit">Back</button>
+                </form>
+                
+                <!-- Table to display the car inventory -->
+                <h1>Car Inventory</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Images</th>
+                            <th>Manufacturer</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Price</th>
+                            <th>Distance</th>
+                        </tr>
+                    </thead>
+                    <!-- Python imbeded into HTML to querry the database -->
+                    <tbody>
+                        {% if cars|length == 0 %}
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No cars found</td>
+                            </tr>
+                        {% else %}
+                            {% for car in cars %}
+                                <tr>
+                                    <td>
+                                        {% if car.image %}
+                                            <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" width="570">
+                                        {% else %}
+                                            No image
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ car.manufacturer.manufacturer_name }}</td>
+                                    <td>{{ car.model.model_name }}</td>
+                                    <td>{{ car.year }}</td>
+                                    <td>{{ car.car_price }}</td>
+                                    <td>{{ car.distance }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    </html>
+{% endblock %}

@@ -8,7 +8,7 @@
 
 {% block styles %}
     <style>
-        
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -40,32 +40,31 @@
         .navbar a {
             color: #e9ecef;
             text-decoration: none;
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 10px 110px; 
+            border-radius: 4px; 
             line-height: 1;
             transition: background-color .15s ease, color .15s ease;
+            font-size: 0.9em; /* Smaller font size */
         }
 
         .navbar a:hover,
         .navbar a:focus {
-            background: #0d6efd;
+            background: #C3002F;
             color: #fff;
             outline: none;
         }
 
-        /* Optional: highlight current page */
         .navbar a.active {
             background: rgba(255,255,255,.1);
         }
 
-        /* Small screens: let links wrap and center nicely */
         @media (max-width: 560px) {
             .navbar a {
-            flex: 1 1 auto;
-            text-align: center;
+                flex: 1 1 auto;
+                text-align: center;
+                font-size: 0.8em; /* Even smaller on mobile */
             }
         }
-
         .container {
             max-width: 85%;
             margin: auto;
@@ -117,9 +116,10 @@
         }
 
         .carousel-caption {
+            position: center;
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-            border-radius: 5%;
-            padding: 5%px;
+            border-radius: 3%;
+            padding: 3%px;
             bottom: 20%; /* Position captions higher */
             text-align: center;
             color: #fff;
@@ -146,6 +146,8 @@
 {% block page_content %}
   <h1>Welcome to My App</h1>
   <p>This is the home page content.</p>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
   <!-- Carousel From bootstrap documentation-->
   <div class="container my-5">
         <h1 class="text-center mb-4">Our New Deals</h1>
@@ -184,4 +186,15 @@
         <p>This is the home page content.</p>
         <P>Welcome to the DevHome page, where you can find all the latest updates and features.</P>
     </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+    var myCarousel = document.querySelector('#myCarousel');
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 5000, // Auto-slide every 5 seconds
+        wrap: true // Loop back to first after last IT DOSENT WORK D:
+    });
+    </script>
 {% endblock %}
