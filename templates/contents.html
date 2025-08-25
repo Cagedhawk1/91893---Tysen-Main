@@ -66,24 +66,142 @@
                 font-size: 0.8em; /* Even smaller on mobile */
             }
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Table Container */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2% 0;
+        }
+
         table {
-            align-content: center;
-            margin: auto;
-            width: 60%;
-            border-collapse: collapse;
+            width: 100%;
+            margin: 2% auto;
+            border-collapse: separate;
+            border-spacing: 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: 1%;
+            overflow: hidden;
+            background-color: #fff;
         }
 
         th, td {
-            border: px solid #3d3d3d;
+            border: 1px solid #ddd;
             text-align: left;
-            padding: 8px;
-            border-radius: 3px;
+            padding: 2%;
+            vertical-align: middle;
         }
+
         th {
             background-color: rgba(200, 200, 200, 0.867);
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid #bbb;
         }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .car-image {
+            width: 80%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 5%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .no-cars {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            padding: 5%;
+        }
+
+        .price-cell {
+            font-weight: bold;
+            color: #28a745;
+            text-align: right;
+        }
+
+        .year-cell, .distance-cell {
+            text-align: center;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        /* Mobile - screens smaller than 600px */
+        @media (max-width: 600px) {
+            th, td {
+                padding: 1%;
+                font-size: 85%;
+            }
+            
+            .car-image {
+                width: 60%;
+                max-width: 100px;
+            }
+            
+            .center {
+                width: 95%;
+            }
+        }
+
+        /* Tablet - screens between 600px and 900px */
+        @media (min-width: 601px) and (max-width: 900px) {
+            th, td {
+                padding: 1.5%;
+                font-size: 90%;
+            }
+            
+            .car-image {
+                width: 70%;
+                max-width: 150px;
+            }
+            
+            .center {
+                width: 85%;
+            }
+        }
+
+        /* Desktop - screens larger than 900px */
+        @media (min-width: 901px) {
+            th, td {
+                padding: 2%;
+                font-size: 100%;
+            }
+            
+            .car-image {
+                width: 80%;
+                max-width: 1000px;
+            }
+            
+            .center {
+                width: 70%;
+            }
+        }
+        
         .center {
             display: block;
             margin-left: auto;
@@ -154,14 +272,14 @@
         <div>
             <div class="container mt-5">
                 <form method="GET" action="/contents">
-                    <input type="text" name="query">
+                    <input type="text" name="query" placeholder="Search cars...">
                     <button type="submit">Search</button>
                 </form>
 
                 <form method="GET" action="/contents">
                     <button type="submit">Back</button>
                 </form>
-                
+
                 <!-- Table to display the car inventory -->
                 <h1>Car Inventory</h1>
                 <table>
@@ -175,34 +293,39 @@
                             <th>Distance</th>
                         </tr>
                     </thead>
-                    <!-- Python imbeded into HTML to querry the database -->
+                    <!-- Python embedded into HTML to query the database -->
                     <tbody>
                         {% if cars|length == 0 %}
-                            <tr>
-                                <td colspan="6" style="text-align: center;">No cars found</td>
-                            </tr>
+                        <tr>
+                            <td colspan="6" class="no-cars">No cars found</td>
+                        </tr>
                         {% else %}
-                            {% for car in cars %}
-                                <tr>
-                                    <td>
-                                        {% if car.image %}
-                                            <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" width="570">
-                                        {% else %}
-                                            No image
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ car.manufacturer.manufacturer_name }}</td>
-                                    <td>{{ car.model.model_name }}</td>
-                                    <td>{{ car.year }}</td>
-                                    <td>{{ car.car_price }}</td>
-                                    <td>{{ car.distance }}</td>
-                                </tr>
-                            {% endfor %}
+                        {% for car in cars %}
+                        <tr>
+                            <td style="text-align: center;">
+                                {% if car.image %}
+                                <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" class="car-image" alt="Car Image">
+                                {% else %}
+                                <span style="color: #999; font-style: italic;">No image</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ car.manufacturer.manufacturer_name }}</td>
+                            <td>{{ car.model.model_name }}</td>
+                            <td class="year-cell">{{ car.year }}</td>
+                            <td class="price-cell">${{ "{:,.0f}".format(car.car_price) }}</td>
+                            <td class="distance-cell">{{ "{:,}".format(car.distance) }} km</td>
+                        </tr>
+                        {% endfor %}
                         {% endif %}
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <footer>
+            <p>&copy; 2024 Car Inventory System. All rights reserved.</p>
+        </footer>
     </body>
     </html>
 {% endblock %}
+
