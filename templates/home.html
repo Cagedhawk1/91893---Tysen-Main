@@ -1,25 +1,30 @@
 <!-- Extends the template from base.html -->
 {% extends "base.html" %}
 
+<!-- Page title block -->
 {% block title %}Home{% endblock %}
 
+<!-- Head block for scripts -->
 {% block head %}
     {{ super() }}
+    <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% endblock %}
 
-
+<!-- Custom styles block -->
 {% block styles %}
     <style>
-
+        /* Base body styles with background image */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background-image: url('https://static.vecteezy.com/system/resources/previews/008/423/535/non_2x/3d-black-geometric-abstract-background-overlap-layer-on-dark-space-with-line-motion-style-effect-graphic-design-element-carbon-fiber-texture-concept-for-banner-flyer-card-brochure-cover-etc-vector.jpg');
         }
+        
+        /* Full-width navbar styling */
         .navbar {
-            /* makes it span edge-to-edge even inside a centered container */
+            /* Full viewport width spanning edge-to-edge */
             width: 100vw;
             margin-left: calc(50% - 50vw);
             margin-right: calc(50% - 50vw);
@@ -33,12 +38,14 @@
             gap: 12px;
             flex-wrap: wrap;
 
-            position: sticky;  /* change to fixed for always-on-top */
+            /* Sticky positioning */
+            position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0,0,0,.15);
         }
 
+        /* Navbar link styling */
         .navbar a {
             color: #e9ecef;
             text-decoration: none;
@@ -46,9 +53,10 @@
             border-radius: 4px; 
             line-height: 1;
             transition: background-color .15s ease, color .15s ease;
-            font-size: 0.9em; /* Smaller font size */
+            font-size: 0.9em;
         }
 
+        /* Hover and focus states for navbar links */
         .navbar a:hover,
         .navbar a:focus {
             background: #C3002F;
@@ -56,17 +64,21 @@
             outline: none;
         }
 
+        /* Active link state */
         .navbar a.active {
             background: rgba(255,255,255,.1);
         }
 
+        /* Mobile responsive navbar */
         @media (max-width: 560px) {
             .navbar a {
                 flex: 1 1 auto;
                 text-align: center;
-                font-size: 0.8em; /* Even smaller on mobile */
+                font-size: 0.8em;
             }
         }
+        
+        /* Main container styling */
         .container {
             max-width: 85%;
             margin: auto;
@@ -76,72 +88,83 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Main heading styles */
         h1 {
             color: #333;
             font-size: 2.5em;
             text-align: center;
         }
 
+        /* Paragraph text styling */
         p {
             color: #585757;
             font-size: 1.1em;
             line-height: 1.5;
             text-align: center;
-
         }
 
+        /* Container text override */
         .container {
             color: #666;
             font-size: 1.1em;
             line-height: 1.5;
         }
 
+        /* Carousel container */
         .carousel {
             max-width: 100%;
             margin: 0 auto;
         }
 
+        /* Carousel inner styling with rounded corners */
         .carousel-inner {
-            border-radius: 10px; /* Rounded corners */
-            overflow: hidden; /* Ensure images respect border radius */
+            border-radius: 10px;
+            overflow: hidden;
         }
 
+        /* Carousel image styling */
         .carousel-item img {
             width: 100%;
-            height: 100%; /* Full viewport height */
-            object-fit: fill; /* Ensure images cover the area without distortion */
-            transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
+            height: 100%;
+            object-fit: fill;
+            transition: opacity 0.5s ease-in-out;
         }
 
+        /* Carousel item positioning */
         .carousel-item {
             position: relative;
         }
 
+        /* Carousel caption overlay */
         .carousel-caption {
             position: center;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 3%;
             padding: 3%px;
-            bottom: 20%; /* Position captions higher */
+            bottom: 20%;
             text-align: center;
             color: #fff;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle text shadow for readability */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
 
+        /* Carousel caption heading */
         .carousel-caption h5 {
-            font-size: 2rem; /* Larger caption title */
+            font-size: 2rem;
             font-weight: bold;
         }
 
+        /* Mobile carousel adjustments */
         @media (max-width: 70%) {
             .carousel-caption {
-                bottom: 10%; /* Adjust caption position for smaller screens */
+                bottom: 10%;
                 padding: 10px;
             }
             .carousel-caption h5 {
-                font-size: 1.5rem; /* Smaller title on mobile */
+                font-size: 1.5rem;
             }
         }
+        
+        /* Center alignment utility class */
         .center {
             display: block;
             margin-left: auto;  
@@ -149,6 +172,8 @@
             max-width: 100%;
             height: auto;
         }
+        
+        /* Footer styling */
         footer {
             background-color: #f8f9fa;
             padding: 20px 0;
@@ -157,25 +182,20 @@
             border-top: 1px solid #dee2e6;
         }
 
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 30px;
-            border-top: 1px solid #dee2e6;
-        }
-
+        /* Footer image styling */
         footer img {
             max-width: 100%;
             height: auto;
             margin-bottom: 10px;
         }
 
+        /* Footer contact info styling */
         footer .contact-info {
             color: #333;
             font-size: 1rem;
         }
 
+        /* Footer links styling */
         footer .contact-info a {
             color: #007bff;
             text-decoration: none;
@@ -187,17 +207,22 @@
     </style>
 {% endblock %}
 
+<!-- Main page content block -->
 {% block page_content %}
     <h1 class= mt-4>Welcome to Southey's Auto World Ltd/Southey Honda & Nissan</h1>
-  <p class= mt-3>Southeys is home of all things automotive and represent some of the worlds top car brands in the Waiarapa region and beyond.</p>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  
-  <!-- Carousel From bootstrap documentation-->
-  <div class="container my-5">
+    <p class= mt-3>Southeys is home of all things automotive and represent some of the worlds top car brands in the Waiarapa region and beyond.</p>
+    
+    <!-- Bootstrap CSS link (note: should be in head block) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Bootstrap carousel section -->
+    <div class="container my-5">
         <h1 class="text-center mb-4">Our New Deals</h1>
-        <!-- Carousel -->
+        
+        <!-- Main carousel component -->
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <!-- Indicators -->
+            
+            <!-- Carousel indicators/dots -->
             <div class="carousel-indicators">
                 {% for item in carousel_items %}
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ loop.index0 }}" 
@@ -205,11 +230,13 @@
                         aria-label="Slide {{ loop.index }}"></button>
                 {% endfor %}
             </div>
-            <!-- Carousel Items -->
+            
+            <!-- Carousel slides container -->
             <div class="carousel-inner">
                 {% for item in carousel_items %}
                 <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
                     <img src="{{ item.image }}" class="d-block w-100" alt="{{ item.caption }}">
+                    <!-- Caption overlay (hidden on mobile) -->
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ item.caption }}</h5>
                         <p>{{ item.description }}</p>
@@ -217,7 +244,8 @@
                 </div>
                 {% endfor %}
             </div>
-            <!-- Controls -->
+            
+            <!-- Previous/Next navigation controls -->
             <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -227,13 +255,9 @@
                 <span class="visually-hidden">Next</span>
             </button> 
         </div>
+        
+        <!-- Bottom text content -->
         <h1 class="text-center mt-4">Ready to Get Behind the Wheel?</h1>
         <P class= "mt-3">Schedule a test drive today across any of our dealerships. Our friendly team can guide you through the process and answer any of your questions. Take the first step toward owning your perfect vehicle.</P>
-    
     </div>
 {% endblock %}
-
-
-
-
-
