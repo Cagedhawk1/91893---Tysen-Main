@@ -1,16 +1,18 @@
 <!-- Extends the template from base.html -->
 {% extends "base.html" %}
 
+<!-- Page title block -->
 {% block title %}Home{% endblock %}
 
-
+<!-- Head block for additional scripts/meta -->
 {% block head %}
     {{ super() }}
 {% endblock %}
 
-
+<!-- Custom styles block -->
 {% block styles %}
     <style>
+        /* Base body styles with background */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,8 +20,9 @@
             background-image: url('https://static.vecteezy.com/system/resources/previews/008/423/535/non_2x/3d-black-geometric-abstract-background-overlap-layer-on-dark-space-with-line-motion-style-effect-graphic-design-element-carbon-fiber-texture-concept-for-banner-flyer-card-brochure-cover-etc-vector.jpg');
         }
 
+        /* Full-width navbar styling */
         .navbar {
-            /* makes it span edge-to-edge even inside a centered container */
+            /* Full viewport width spanning edge-to-edge */
             width: 100vw;
             margin-left: calc(50% - 50vw);
             margin-right: calc(50% - 50vw);
@@ -33,12 +36,14 @@
             gap: 12px;
             flex-wrap: wrap;
 
-            position: sticky;  /* change to fixed for always-on-top */
+            /* Sticky positioning */
+            position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0,0,0,.15);
         }
 
+        /* Navbar link styling */
         .navbar a {
             color: #e9ecef;
             text-decoration: none;
@@ -46,9 +51,10 @@
             border-radius: 4px; 
             line-height: 1;
             transition: background-color .15s ease, color .15s ease;
-            font-size: 0.9em; /* Smaller font size */
+            font-size: 0.9em;
         }
 
+        /* Navbar link hover states */
         .navbar a:hover,
         .navbar a:focus {
             background: #C3002F;
@@ -56,29 +62,33 @@
             outline: none;
         }
 
+        /* Active navbar link state */
         .navbar a.active {
             background: rgba(255,255,255,.1);
         }
 
+        /* Mobile responsive navbar */
         @media (max-width: 560px) {
             .navbar a {
                 flex: 1 1 auto;
                 text-align: center;
-                font-size: 0.8em; /* Even smaller on mobile */
+                font-size: 0.8em;
             }
         }
 
+        /* Universal box-sizing */
         * {
             box-sizing: border-box;
         }
 
-        /* Table Container */
+        /* Responsive table wrapper */
         .table-container {
             width: 100%;
             overflow-x: auto;
             margin: 2% 0;
         }
 
+        /* Main table styling */
         table {
             width: 100%;
             margin: 2% auto;
@@ -90,6 +100,7 @@
             background-color: #fff;
         }
 
+        /* Table cell base styling */
         th, td {
             border: 1px solid #ddd;
             text-align: left;
@@ -97,6 +108,7 @@
             vertical-align: middle;
         }
 
+        /* Table header styling */
         th {
             background-color: rgba(200, 200, 200, 0.867);
             font-weight: bold;
@@ -104,14 +116,17 @@
             border-bottom: 2px solid #bbb;
         }
 
+        /* Alternating row colors */
         tbody tr:nth-child(even) {
             background-color: #f9f9f9;
         }
 
+        /* Table row hover effect */
         tbody tr:hover {
             background-color: #f0f0f0;
         }
 
+        /* Car image styling in table */
         .car-image {
             width: 80%;
             max-width: 200px;
@@ -121,6 +136,7 @@
             margin: 0 auto;
         }
 
+        /* No cars found message */
         .no-cars {
             text-align: center;
             font-style: italic;
@@ -128,16 +144,19 @@
             padding: 5%;
         }
 
+        /* Price column styling */
         .price-cell {
             font-weight: bold;
             color: #28a745;
             text-align: right;
         }
 
+        /* Center-aligned columns */
         .year-cell, .distance-cell {
             text-align: center;
         }
 
+        /* Center utility class */
         .center {
             display: block;
             margin-left: auto;
@@ -145,6 +164,7 @@
             width: 90%;
         }
 
+        /* List reset */
         ul {
             list-style-type: none;
             margin: 0;
@@ -152,7 +172,7 @@
             width: 100%;
         }
 
-        /* Mobile - screens smaller than 600px */
+        /* Mobile responsive styles */
         @media (max-width: 600px) {
             th, td {
                 padding: 1%;
@@ -169,7 +189,7 @@
             }
         }
 
-        /* Tablet - screens between 600px and 900px */
+        /* Tablet responsive styles */
         @media (min-width: 601px) and (max-width: 900px) {
             th, td {
                 padding: 1.5%;
@@ -186,7 +206,7 @@
             }
         }
 
-        /* Desktop - screens larger than 900px */
+        /* Desktop responsive styles */
         @media (min-width: 901px) {
             th, td {
                 padding: 2%;
@@ -203,18 +223,23 @@
             }
         }
         
+        /* Center utility override */
         .center {
             display: block;
             margin-left: auto;
             margin-right: auto;
             width: 58%;
         }
+        
+        /* List styling override */
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             width: 60px;
         }
+        
+        /* Main container styling */
         .container {
             max-width: 85%;
             margin: auto;
@@ -223,6 +248,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Footer base styling */
         footer {
             background-color: #f8f9fa;
             padding: 20px 0;
@@ -231,25 +258,20 @@
             border-top: 1px solid #dee2e6;
         }
 
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 30px;
-            border-top: 1px solid #dee2e6;
-        }
-
+        /* Footer image styling */
         footer img {
             max-width: 100%;
             height: auto;
             margin-bottom: 10px;
         }
 
+        /* Footer contact info styling */
         footer .contact-info {
             color: #333;
             font-size: 1rem;
         }
 
+        /* Footer link styling */
         footer .contact-info a {
             color: #007bff;
             text-decoration: none;
@@ -261,9 +283,10 @@
     </style>
 {% endblock %}
 
-
+<!-- Main page content block -->
 {% block page_content %}
     <head>
+        <!-- Page meta information -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Our Inventory</title>
@@ -272,18 +295,21 @@
     <body>
         <div>
             <div class="container mt-5">
+                <!-- Search form -->
                 <form method="GET" action="/contents">
                     <input type="text" name="query" placeholder="Search cars...">
                     <button type="submit">Search</button>
                 </form>
 
+                <!-- Back button form -->
                 <form method="GET" action="/contents">
                     <button type="submit">Back</button>
                 </form>
 
-                <!-- Table to display the car inventory -->
+                <!-- Car inventory table -->
                 <h1>Car Inventory</h1>
                 <table>
+                    <!-- Table headers -->
                     <thead>
                         <tr>
                             <th>Images</th>
@@ -294,15 +320,19 @@
                             <th>Distance</th>
                         </tr>
                     </thead>
-                    <!-- Python embedded into HTML to query the database -->
+                    
+                    <!-- Table body with Jinja2 templating -->
                     <tbody>
+                        <!-- Check if no cars found -->
                         {% if cars|length == 0 %}
                         <tr>
                             <td colspan="6" class="no-cars">No cars found</td>
                         </tr>
                         {% else %}
+                        <!-- Loop through cars data -->
                         {% for car in cars %}
                         <tr>
+                            <!-- Car image cell with conditional display -->
                             <td style="text-align: center;">
                                 {% if car.image %}
                                 <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" class="car-image" alt="Car Image">
@@ -310,6 +340,7 @@
                                 <span style="color: #999; font-style: italic;">No image</span>
                                 {% endif %}
                             </td>
+                            <!-- Car details cells -->
                             <td>{{ car.manufacturer.manufacturer_name }}</td>
                             <td>{{ car.model.model_name }}</td>
                             <td class="year-cell">{{ car.year }}</td>
@@ -322,12 +353,11 @@
                 </table>
             </div>
         </div>
+        
+        <!-- Page footer -->
         <footer>
             <p>&copy; 2025 Southey's Auto World Ltd.</p>
         </footer>
-
-            
     </body>
     </html>
 {% endblock %}
-
