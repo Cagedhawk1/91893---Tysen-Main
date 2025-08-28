@@ -6,11 +6,14 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy.orm import *
 from io import BytesIO
 
+# Registering routes to the app
 def register_routes(app, db):
+
+    # Creates contents page
     @app.route('/contents')
     def contents():
         query = request.args.get('query', '')
-        #Joins to get all cars with their related information
+        #Joins to get all cars with their related information into the table
         cars = db.session.query(Car_stock) \
             .join(Car_manufacturer) \
             .join(Car_bodystyle) \
@@ -23,7 +26,7 @@ def register_routes(app, db):
                 joinedload(Car_stock.image)
             )
 
-        # Simple filter on manufacturer or model name, just as an example
+        # Filter on manufacturer or model name
         if query:
             cars = cars.filter(
                 (Car_manufacturer.manufacturer_name.like(f'%{query}%')) |
@@ -41,23 +44,23 @@ def register_routes(app, db):
             abort(404)
         return send_file(BytesIO(img.image), mimetype='image/jpeg')
     
-    # Creates home page
-    @app.route('/')
+    # Legacy home page
+    @app.route('/Legacyhome')
     def home():
-        return render_template('home.html')
+        return render_template('Legacyhome.html')
 
-    # Creates dev home page
-    @app.route('/DevHome')
+    # Creates Main home page 
+    @app.route('/')
     def DevHome():
+        # Loads carousel images and text into the home page
         carousel_items = [
             {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/AU/Images/homepage/redesign/compressed/award-NIS4334_Qashqai_2022_homepage_d-with-GDA-2-2000x821.jpg.ximg.full.hero.jpg', 'caption': 'New Nissan Qashqai', 'E Power': 'Runnout Sale.'},
             {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/AU/Images/homepage/new-navara-pro-4x-homepage-banner-3840x1574.jpg.ximg.full.hero.jpg', 'caption': 'Unbeatable Nissan Navara', 'Unbeatable Ute': 'Unstoppable Deal.'},
             {'image': 'https://www-asia.nissan-cdn.net/content/dam/Nissan/new-zealand/images/homepage/NIS5140-13_Nissan-X-TRAIL-Production_Digital_HeroDesktop_1620x1152-v.jpg.ximg.full.hero.jpg', 'caption': 'Inovative E-Power technology', 'Offers on now': 'Factory Bonus Offers.'},
         ]
-        return render_template('DevHome.html', carousel_items=carousel_items)   
+        return render_template('home.html', carousel_items=carousel_items)   
 
-    # OLD DEV FUNCTION
-    
+    # OLD DEV FUNCTION TO POPULATE DATABASE - NOT IN USE
     #@app.route('/cars')
     #def cars():
             # Get all cars with their related information
@@ -75,7 +78,7 @@ def register_routes(app, db):
             
             #return render_template('cars_template.html', cars=cars)
 
-
+    # Creates the all listing page
     @app.route('/add-listing', methods=['GET', 'POST'])
     def add_listing():
         # Render the form to add a new car listing
@@ -119,15 +122,16 @@ def register_routes(app, db):
             db.session.add_all([manufacturer, bodystyle, model, image, stock])
             db.session.commit()
 
+            # Redirect to contents page after adding
             return redirect('/contents')  
 
         return render_template("add-listing.html")
     
 
 
-    # Dev command for testing
-    @app.route('/add-sample')
-    def add_sample():
+    # Dev command for testing database
+    #@app.route('/add-sample')
+    #def add_sample():
         # Add a single sample car to the database
         manufacturer = Car_manufacturer(manufacturer_name="Toyota")
         bodystyle = Car_bodystyle(bodystyle_name="Sedan")
@@ -153,9 +157,9 @@ def register_routes(app, db):
         db.session.commit()
         return "Sample data added! <br><a href='/contents'>Back to home</a>"
     
-    # Dev command for testing
-    @app.route('/add-10-cars')
-    def add_10_cars():
+    # Dev command for testing database - adds 10 cars
+    #@app.route('/add-10-cars')
+    #def add_10_cars():
         # Check if manufacturers already exist
         toyota = Car_manufacturer.query.filter_by(manufacturer_name="Toyota").first()
         if not toyota:

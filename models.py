@@ -1,11 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
+# Initialize the database
 db = SQLAlchemy()
 
 
-# Creates the database
- 
 # Bodystyle table
 class Car_bodystyle(db.Model):
     __tablename__ = 'car_bodystyle'
@@ -66,5 +66,6 @@ class Car_stock(db.Model):
     model = db.relationship('Car_model', backref='stock_entries')
     image = db.relationship('car_images', backref='stock_entries')
 
+# Returning all objects in the database
     def __repr__(self):
         return f'<Car_stock {self.stock_id}>'

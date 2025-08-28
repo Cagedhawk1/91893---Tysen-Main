@@ -5,8 +5,11 @@ from routes import register_routes
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
+# Initialize SQLAlchemy
 db = SQLAlchemy()
+# Initalise bootstrap
 bootstrap = Bootstrap()
+# Configuring the flask routes 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 def create_app():
     # Create the app at module level
@@ -28,12 +31,12 @@ def create_app():
     # Initialize plugins
     db.init_app(app)
 
-    # CREATE DB ONLY IF IT DOES
+    # CREATE DB ONLY IF IT DOES NOT EXIST
     with app.app_context():
         if not os.path.exists(DB_PATH):
             db.create_all()
 
-    # Register routes
+    # Register routes file
     from routes import register_routes
     register_routes(app, db)
 
