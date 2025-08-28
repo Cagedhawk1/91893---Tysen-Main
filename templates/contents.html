@@ -128,8 +128,8 @@
 
         /* Car image styling in table */
         .car-image {
-            width: 80%;
-            max-width: 200px;
+            width: 100%;
+            max-width: 400px;
             height: auto;
             border-radius: 5%;
             display: block;
@@ -173,15 +173,110 @@
         }
 
         /* Mobile responsive styles */
-        @media (max-width: 600px) {
-            th, td {
-                padding: 1%;
-                font-size: 85%;
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                max-width: 100%;
+                margin: 10px auto;
+            }
+            
+            /* Hide table and show mobile card layout */
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            /* Mobile card-style layout */
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 15px;
+                padding: 15px;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            td {
+                border: none;
+                padding: 8px 0;
+                position: relative;
+                padding-left: 40%;
+                text-align: left;
+                word-wrap: break-word;
+            }
+            
+            /* Add labels before each data cell */
+            td:before {
+                content: attr(data-label) ": ";
+                position: absolute;
+                left: 6px;
+                width: 35%;
+                font-weight: bold;
+                color: #333;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            /* Image cell special handling */
+            td:first-child {
+                padding-left: 0;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            
+            td:first-child:before {
+                display: none;
             }
             
             .car-image {
-                width: 60%;
-                max-width: 100px;
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+            
+            /* Form styling for mobile */
+            form {
+                margin-bottom: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            form input[type="text"] {
+                flex: 1;
+                min-width: 200px;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+            
+            form button {
+                padding: 12px 20px;
+                background: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            
+            form button:hover {
+                background: #0056b3;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin: 20px 0;
             }
             
             .center {
@@ -190,36 +285,36 @@
         }
 
         /* Tablet responsive styles */
-        @media (min-width: 601px) and (max-width: 900px) {
+        @media (min-width: 769px) and (max-width: 1024px) {
             th, td {
                 padding: 1.5%;
                 font-size: 90%;
             }
             
             .car-image {
-                width: 70%;
-                max-width: 150px;
+                width: 100%;
+                max-width: 350px;
             }
             
-            .center {
-                width: 85%;
+            .container {
+                max-width: 90%;
             }
         }
 
         /* Desktop responsive styles */
-        @media (min-width: 901px) {
+        @media (min-width: 1025px) {
             th, td {
                 padding: 2%;
                 font-size: 100%;
             }
             
             .car-image {
-                width: 80%;
-                max-width: 700px;
+                width: 100%;
+                max-width: 400px;
             }
             
-            .center {
-                width: 70%;
+            .container {
+                max-width: 85%;
             }
         }
         
@@ -333,19 +428,19 @@
                         {% for car in cars %}
                         <tr>
                             <!-- Car image cell with conditional display -->
-                            <td style="text-align: center;">
+                            <td data-label="Image" style="text-align: center;">
                                 {% if car.image %}
                                 <img src="{{ url_for('serve_image', image_id=car.image.image_id) }}" class="car-image" alt="Car Image">
                                 {% else %}
                                 <span style="color: #999; font-style: italic;">No image</span>
                                 {% endif %}
                             </td>
-                            <!-- Car details cells -->
-                            <td>{{ car.manufacturer.manufacturer_name }}</td>
-                            <td>{{ car.model.model_name }}</td>
-                            <td class="year-cell">{{ car.year }}</td>
-                            <td class="price-cell">${{ "{:,.0f}".format(car.car_price) }}</td>
-                            <td class="distance-cell">{{ "{:,}".format(car.distance) }} km</td>
+                            <!-- Car details cells with data-label for mobile -->
+                            <td data-label="Manufacturer">{{ car.manufacturer.manufacturer_name }}</td>
+                            <td data-label="Model">{{ car.model.model_name }}</td>
+                            <td data-label="Year" class="year-cell">{{ car.year }}</td>
+                            <td data-label="Price" class="price-cell">${{ "{:,.0f}".format(car.car_price) }}</td>
+                            <td data-label="Distance" class="distance-cell">{{ "{:,}".format(car.distance) }} km</td>
                         </tr>
                         {% endfor %}
                         {% endif %}
